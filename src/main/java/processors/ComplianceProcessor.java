@@ -15,12 +15,12 @@ public class ComplianceProcessor extends Processor {
 
         try {
             System.out.println("  [Safety Scanner] Scanning for restricted content...");
-            System.out.println("  [Status] All clear. No blurring required.");
+            System.out.println("     All clear. No blurring required.");
 
             System.out.println("  [Regional Branding] Overlaying studio logos...");
             System.out.println("  [Action] 'Netflix Original' watermark applied.");
 
-            mediator.onProcessorSuccess(Event.CHECK_SAFETY, "Compliance phase complete.");
+            mediator.onProcessorSuccess(Event.CHECK_SAFETY, "Compliance phase completed.");
 
         } catch (Exception e) {
             System.err.println("  Error: Compliance phase failed: " + e.getMessage());

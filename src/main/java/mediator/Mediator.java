@@ -31,7 +31,7 @@ public class Mediator {
 
         if (nextState != null) {
             FileState.saveState(nextState);
-            System.out.println("Transition: " + currentState + " -> " + nextState);
+            System.out.println("Transition: " + currentState + " -> " + nextState + "\n");
             orchestrateNextStep(nextState);
         }
     }

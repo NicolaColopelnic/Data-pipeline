@@ -32,7 +32,7 @@ public class IngestProcessor extends Processor {
             }
 
             // notify the mediator
-            mediator.onProcessorSuccess(Event.VALIDATE, "Ingest Phase Complete.\n");
+            mediator.onProcessorSuccess(Event.VALIDATE, "Ingest Phase Complete.");
 
         } catch (Exception e) {
             System.err.println("  Ingesting Phase Failed: " + e.getMessage());

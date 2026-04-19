@@ -23,11 +23,10 @@ public class IngestProcessor extends Processor {
 
             if (file.exists()) {
                 String checksum = calculateChecksum(filePath);
-                System.out.println("  Integrity check: Hash generated [" + checksum.substring(0, 8) + "...]");
+                System.out.println("  [Integrity check] Hash generated [" + checksum.substring(0, 8) + "...]");
                 validateFormat(filePath);
-                System.out.println("  File successfully ingested and validated.");
             } else {
-                System.err.println("  Error: Physical file '" + filePath + "' not found.");
+                System.err.println("Error: Physical file '" + filePath + "' not found.");
                 System.exit(1);
             }
 
@@ -58,7 +57,7 @@ public class IngestProcessor extends Processor {
 
     private void validateFormat(String filepath) {
         if (filepath.toLowerCase().endsWith(".mp4") || filepath.toLowerCase().endsWith(".mkv")) {
-            System.out.println("  Format Validator: Matches studio specs.");
+            System.out.println("  [Format Validator] File matches studio specs.");
         } else {
             throw new RuntimeException("Unsupported file format: " + filepath);
         }

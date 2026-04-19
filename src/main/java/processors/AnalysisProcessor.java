@@ -47,6 +47,6 @@ public class AnalysisProcessor extends Processor {
             System.err.println("Error: Failed to create metadata file: " + e.getMessage());
         }
 
-        mediator.onProcessorSuccess(Event.ANALYZE, "Analysis Phase Completed.\n");
+        mediator.onProcessorSuccess(Event.ANALYZE, "Analysis Phase Completed.");
     }
 }

@@ -14,6 +14,9 @@ public class Mediator {
     private ComplianceProcessor compliance = new ComplianceProcessor();
     private PackagingProcessor packaging = new PackagingProcessor();
 
+    private boolean visualsDone = false;
+    private boolean audioDone = false;
+
     public Mediator(String path) {
         this.sourceFilePath = path;
     }
@@ -25,6 +28,23 @@ public class Mediator {
 
     public void onProcessorSuccess(Event event, String successMessage) {
         System.out.println(successMessage);
+        if (event == Event.TRANSCODE) {
+            visualsDone = true;
+        }
+
+        if (event == Event.DUB) {
+            audioDone = true;
+        }
+
+        if (FileState.loadState() == State.ANALYZED) {
+            if (visualsDone && audioDone) {
+                System.out.println("Both parallel tasks completed.\n");
+                FileState.saveState(State.AUDIO_TEXT_PROCESSED);
+                System.out.println("Transition: ANALYZED -> AUDIO_TEXT_PROCESSED\n");
+                orchestrateNextStep(State.AUDIO_TEXT_PROCESSED);
+            }
+            return;
+        }
 
         State currentState = FileState.loadState();
         State nextState = workflow.getNextState(currentState, event);
